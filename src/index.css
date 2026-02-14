@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - Atmosphere-First & Empathy-Driven: Designed specifically for parents and caregivers of children with ASD. The interface prioritizes 'Cognitive Ease' to reduce overwhelm during the learning journey.
+   - Visual Style: Soft-Modular (Bento surfaces) with gentle elevation. We use rounded corners and organic color transitions to evoke a sense of safety, patience, and growth.
+   - Layout: A structured micro-learning approach where each lesson is a distinct 'island' of information, preventing cognitive overload.
+
+2. TYPOGRAPHY:
+   - Sans (Plus Jakarta Sans): Chosen for its friendly, open apertures and modern geometric touch. It maintains high legibility for long-form educational content while feeling approachable.
+   - Mono (JetBrains Mono): Used sparingly for progress metrics, lesson durations, and metadata to provide a clear, technical contrast to the narrative content.
+
+3. COLOR SYSTEM:
+   - Primary (Soft Blue, H:245): Represents 'Communication and Trust'. It is the anchor of the virtual classroom.
+   - Accent (Natural Green, H:150): Represents 'Growth and Vitality', used for progress bars and successful completion states.
+   - Backgrounds: Warm beiges and soft slates (H:85 in light, H:240 in dark) provide a 'Paper-like' comfort, avoiding the harshness of pure white/black.
+
+4. USAGE GUIDE:
+   - Layout: Dashboard-style with a fixed sidebar for navigation and a centered 'Focus Container' for lesson content.
+   - Components: Use high-radius (0.75rem) for cards. Progress bars should use the --chart-2 (success green) with a subtle pulse animation.
+   - Feedback: Navigation buttons should have tactile hover states using --accent-foreground to guide the user through the curriculum flow.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.98 0.01 85);
+  --foreground: oklch(0.21 0.02 245);
+  --card: oklch(1.0 0.0 0);
+  --card-foreground: oklch(0.21 0.02 245);
+  --popover: oklch(1.0 0.0 0);
+  --popover-foreground: oklch(0.21 0.02 245);
+  --primary: oklch(0.52 0.14 245);
+  --primary-foreground: oklch(0.98 0.01 245);
+  --secondary: oklch(0.94 0.03 160);
+  --secondary-foreground: oklch(0.25 0.08 160);
+  --muted: oklch(0.95 0.01 245);
+  --muted-foreground: oklch(0.45 0.03 245);
+  --accent: oklch(0.92 0.04 190);
+  --accent-foreground: oklch(0.30 0.10 200);
+  --destructive: oklch(0.60 0.18 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.88 0.02 245);
+  --input: oklch(0.88 0.02 245);
+  --ring: oklch(0.52 0.14 245);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.65 0.15 245);
+  --chart-2: oklch(0.72 0.12 150);
+  --chart-3: oklch(0.85 0.12 80);
+  --chart-4: oklch(0.75 0.14 200);
+  --chart-5: oklch(0.65 0.12 300);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.97 0.01 85);
+  --sidebar-foreground: oklch(0.25 0.03 245);
+  --sidebar-primary: oklch(0.52 0.14 245);
+  --sidebar-primary-foreground: oklch(0.98 0.01 245);
+  --sidebar-accent: oklch(0.90 0.03 245);
+  --sidebar-accent-foreground: oklch(0.21 0.02 245);
+  --sidebar-border: oklch(0.85 0.02 245);
+  --sidebar-ring: oklch(0.52 0.14 245);
+}
+
+.dark {
+  --background: oklch(0.18 0.02 245);
+  --foreground: oklch(0.95 0.01 245);
+  --card: oklch(0.22 0.02 245);
+  --card-foreground: oklch(0.95 0.01 245);
+  --popover: oklch(0.22 0.02 245);
+  --popover-foreground: oklch(0.95 0.01 245);
+  --primary: oklch(0.65 0.12 245);
+  --primary-foreground: oklch(0.18 0.02 245);
+  --secondary: oklch(0.28 0.05 160);
+  --secondary-foreground: oklch(0.90 0.05 160);
+  --muted: oklch(0.25 0.02 245);
+  --muted-foreground: oklch(0.70 0.02 245);
+  --accent: oklch(0.28 0.06 190);
+  --accent-foreground: oklch(0.90 0.06 190);
+  --destructive: oklch(0.50 0.18 25);
+  --destructive-foreground: oklch(0.95 0.01 25);
+  --border: oklch(0.28 0.02 245);
+  --input: oklch(0.28 0.02 245);
+  --ring: oklch(0.65 0.12 245);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.65 0.15 245);
+  --chart-2: oklch(0.70 0.12 150);
+  --chart-3: oklch(0.80 0.12 80);
+  --chart-4: oklch(0.70 0.14 200);
+  --chart-5: oklch(0.60 0.12 300);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.15 0.02 245);
+  --sidebar-foreground: oklch(0.90 0.02 245);
+  --sidebar-primary: oklch(0.65 0.12 245);
+  --sidebar-primary-foreground: oklch(0.15 0.02 245);
+  --sidebar-accent: oklch(0.22 0.02 245);
+  --sidebar-accent-foreground: oklch(0.95 0.01 245);
+  --sidebar-border: oklch(0.25 0.02 245);
+  --sidebar-ring: oklch(0.65 0.12 245);
+}
+
+@theme inline {
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
